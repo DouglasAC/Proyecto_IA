@@ -1,10 +1,84 @@
 digraph G {
-    node[shape = circle, label=""];
+    node[shape = circle; label=""];
     rankdir=LR;
    graph [ nodesep="1.5", ranksep="5"]
    
-{ rank = same; e1; e2; e3; e4; }
-{ rank = same; r01; r02; r03; r04; r05; r06; r07; r08; r09; r10; r11; r12; }
+
+subgraph cluster_1 {
+    
+    b1 -> b2 -> b3 -> b4 -> b5 -> b6 -> b7[color="white"];
+    b4;
+    b5;
+    b6;
+    b7;
+    label = "Bias";
+    color=blue
+  }
+  
+subgraph cluster_2 {
+    
+    e1;
+    e2;
+    e3;
+    e4;
+    label = "Capa Entrada";
+    color=blue
+  }
+ 
+ subgraph cluster_3 {
+    
+    r01
+    r02
+    r03
+    r04
+    r05
+    r06
+    r07
+    r08
+    r09
+    r10
+    r11
+    r12
+
+    c20
+    c21
+    c22
+    c23
+    c24
+    c25
+    c26
+    c27
+    c28
+    c29
+
+    c30
+    c31
+    c32
+    c33
+    c34
+    c35
+    c36
+    c37
+
+    c40
+    c41
+    c42
+    c43
+    c44
+    c45
+
+    c50
+    c51
+    c52
+    c53
+
+    c60
+    c61
+
+    label = "Capas Ocultas";
+    color=blue
+  }
+  
 
   e1 -> r01
   e1 -> r02
@@ -230,7 +304,6 @@ c23 -> c37
 
 
 c24 -> c30
-c24 -> c31
 c24 -> c32
 c24 -> c33
 c24 -> c34
@@ -404,5 +477,55 @@ c60 -> c70
 
 
 c61 -> c70
+
+    b1[layer="B"]
+  b1 -> r01
+  b1 -> r02
+  b1 -> r03
+  b1 -> r04
+  b1 -> r05
+  b1 -> r06
+  b1 -> r07
+  b1 -> r08
+  b1 -> r09
+  b1 -> r10
+  b1 -> r11
+  b1 -> r12
+  b2 -> c20
+    b2 -> c21
+    b2 -> c22
+    b2 -> c23
+    b2 -> c24
+    b2 -> c25
+    b2 -> c26
+    b2 -> c27
+    b2 -> c28
+    b2 -> c29
+    b3 -> c30
+    b3 -> c31
+    b3 -> c32
+    b3 -> c33
+    b3 -> c34
+    b3 -> c35
+    b3 -> c36
+    b3 -> c37
+
+    b4 -> c40
+    b4 -> c41
+    b4 -> c42
+    b4 -> c43
+    b4 -> c44
+    b4 -> c45
+    
+    b5 -> c50
+    b5 -> c51
+    b5 -> c52
+    b5 -> c53
+    
+    b6 -> c60
+    b6 -> c61
+    
+    b7 -> c70
+
 
 }
