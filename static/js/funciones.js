@@ -37,15 +37,13 @@ function Alcargar() {
 
 }
 
-function cambiarMunicipios()
-{
-    let dep =  document.getElementById("departamento").value
+function cambiarMunicipios() {
+    let dep = document.getElementById("departamento").value
     console.log(dep)
-    let depss =  document.getElementById("municipio").value
+    let depss = document.getElementById("municipio").value
     console.log(depss)
     for (let x = 0; x < departamentos.length; x++) {
-        if(departamentos[x][0] == dep)
-        {
+        if (departamentos[x][0] == dep) {
             let mun = ""
             let munis = departamentos[x][1]
             for (let y = 0; y < munis.length; y++) {
@@ -55,13 +53,12 @@ function cambiarMunicipios()
             break
         }
     }
-    let deps =  document.getElementById("municipio").value
+    let deps = document.getElementById("municipio").value
     console.log(deps)
 }
 
 
-function enviar()
-{
+function enviar() {
     let genero = document.getElementById("genero").value
     let edad = document.getElementById("edad").value
     let departamento = document.getElementById("departamento").value
@@ -86,7 +83,8 @@ function enviar()
         }),
         success: function (data, textStatus, jqXHR) {
             console.log(data)
-            
+            alert(data.depa)
+            document.getElementById("respuesta").innerHTML = "Respuesta: " + data.depa;
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus)

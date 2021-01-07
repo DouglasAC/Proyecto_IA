@@ -40,7 +40,7 @@ def predecir():
     distancia = float(data["distancia"])
 
     print(genero, edad, year, distancia)
-    mejor = cargar("Guardar/Mejor.pkl")
+    mejor = cargar("Guardar/Modelo01.pkl")
     departamentos = cargar("Guardar/Datos.pkl")
     esc_edad = (edad - departamentos.minEdad) / (departamentos.maxEdad - departamentos.minEdad)
     esc_year = (year - departamentos.minYear) / (departamentos.maxYear - departamentos.minYear)
@@ -57,7 +57,7 @@ def predecir():
     print(resp_arr.shape)
     print(respuesta_entrenamiento.shape)
     test_set = Data(datos_entrenamiento, respuesta_entrenamiento)
-    val = predecirModelo(mejor.modelo, test_set)
+    val = predecirModelo(mejor, test_set)
     resp = "Activo" if val == 1 else "Traslado"
     return jsonify(
         depa = resp

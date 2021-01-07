@@ -15,9 +15,9 @@ def principal():
     train_set = Data(datos_entrenamiento, respuesta_entrenamiento)
     test_set = Data(datos_prueba, respuesta_prueba)
 
-    capas = [train_set.n, 8, 6, 5, 1]
+    capas = [train_set.n, 12, 10, 8, 6, 4, 2, 1]
 
-    modelo = NN_Model(train_set, capas, alpha=0.01, iterations=10000, lambd=150, keep_prob=0.85)
+    modelo = NN_Model(train_set, capas, alpha=0.09, iterations=55000, lambd=1.5, keep_prob=1)
     
     now = datetime.now()
     fecha_hora = now.strftime("%d/%m/%Y %H:%M:%S")
@@ -27,13 +27,14 @@ def principal():
     now = datetime.now()
     fecha_hora = now.strftime("%d/%m/%Y %H:%M:%S")
     print(fecha_hora)
-    print("alpa", modelo.alpha, "lam", modelo.lambd, "kp", modelo.kp, "it", modelo.max_iteration)
+    print("alpa", modelo.alpha, "lam", modelo.lambd, "kp", modelo.kp, "it", modelo.max_iteration, capas)
     #Plotter.show_Model([modelo])
 
     print('Entrenamiento Modelo')
     modelo.predict(train_set)
     print('Validacion Modelo')
     modelo.predict(test_set)
+    save_object(modelo, "Guardar/Modelo01.pkl")
 
 
 tamPoblacion = 10
@@ -60,13 +61,13 @@ def verificarCriterio(generacion):
 
 def evaluarFitness(solucion, train_data, test_data):
     # Soucion [alpha, lambda, itereaciones, kp]
-    val_alpha = [0.1, 0.01, 0.5, 0.05, 0.001,
+    val_alpha = [0.1, 0.01, 0.5, 0.09, 0.001,
                  0.0001, 0.009, 0.0005, 0.09, 0.007]
-    val_lambda = [0, 0.1, 0.01, 0.5, 0.09, 1, 50, 300, 150, 0.001]
+    val_lambda = [0, 0.1, 0.01, 0.5, 0.09, 1, 50, 300, 1.5, 0.001]
     val_iteraciones = [5000, 1000, 12000, 20000,
-                       25000, 7500, 500, 40000, 50000, 35000]
+                       25000, 10500, 500, 40000, 50000, 35000]
     val_kp = [1, 0.95, 0.85, 0.65, 0.45, 0.55, 0.75, 0.25, 0.35, 0.1]
-    capas = [train_data.n, 8, 6, 5, 1]
+    capas = [train_data.n, 12, 10, 8, 6, 4, 2, 1]
     modelo = NN_Model(train_data, capas, alpha=val_alpha[solucion[0]], iterations=val_iteraciones[
                       solucion[2]], lambd=val_lambda[solucion[1]], keep_prob=val_kp[solucion[3]])
     modelo.training(False)
